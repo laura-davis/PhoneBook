@@ -1,6 +1,7 @@
 public class Contact {
-    private String name;
-    private String phoneNumber;
+
+    private final String name;
+    private final String phoneNumber;
 
     public Contact(String name, String phoneNumber) {
         this.name = name;
@@ -11,19 +12,11 @@ public class Contact {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String toString() {
-        return "Name: " + this.name + "\nPhone Number: " + this.phoneNumber;
+    public static Contact newContact(String name, String phone) {
+        return new Contact(name, phone);
     }
 }

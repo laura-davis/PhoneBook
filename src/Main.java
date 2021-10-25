@@ -1,40 +1,136 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Scanner;
 
 public class Main {
 
+    private static final Scanner keyboard = new Scanner(System.in);
+    private static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
+    private static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
+
     public static void main(String[] args) {
 
-        HashMap<String, Contact> phoneBookHash = new HashMap<>();
-        Contact contact1 = new Contact("Dave", "01234 567890");
-        Contact contact2 = new Contact("Jane", "01111 222222");
-        phoneBookHash.put(contact1.getName(), contact1);
-        phoneBookHash.put(contact2.getName(), contact2);
+        boolean quit = false;
+        int selection;
 
-        long s1 = System.nanoTime();
-        phoneBookHash.get("Jane");
-        long e1 = System.nanoTime();
-        double ms1 = 1.0 * (e1 - s1) / 1000000;
-        System.out.println("The first search took " + ms1 + " milliseconds.");
+        Menu.displayMenu();
 
-        ArrayList<Contact> phoneBookArray = new ArrayList<>();
-        Contact contact3 = new Contact("Bob", "01122 334455");
-        Contact contact4 = new Contact("Tina", "09876 543210");
-        phoneBookArray.add(contact3);
-        phoneBookArray.add(contact4);
+        while (!quit) {
+            //TODO - try / catch - exceptions handling if invalid data input
+            selection = keyboard.nextInt();
+            keyboard.nextLine();
+            switch (selection) {
+                case 1 -> Menu.displayMenu();
+                case 2 -> {
+                    Menu.displayContacts();
+                    phonebookHashMap.displayContacts();
+                    phonebookArrayList.displayContacts();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        System.out.println("error");
+                    }
+                    Menu.chooseOption();
+                }
+                case 3 -> addContact();
+                case 4 -> updateContact();
 
-        long s2 = System.nanoTime();
-        Contact match = null;
-        for (Contact contact: phoneBookArray) {
-            if (contact.getName().equals("Bob")) {
-                match = contact;
-                break;
+                case 5 -> deleteContact();
+
+                case 6 -> searchContacts();
+
+                case 7 -> {
+                    quit = true;
+                    Menu.quit();
+                }
+                default -> System.out.println("Please enter a valid selection.");
             }
         }
-        long e2 = System.nanoTime();
-        double ms2 = 1.0 * (e2 - s2) / 1000000;
+    }
 
-        System.out.println("The second search took " + ms2 + " milliseconds.");
+    public static void addContact() {
+        Menu.addContact();
+        String contactName = keyboard.nextLine();
+        System.out.print("Enter contact's phone number: ");
+        String contactPhone = keyboard.nextLine();
+        long hashMapStart = System.nanoTime();
+        phonebookHashMap.addContact(contactName, contactPhone);
+        long hashMapEnd = System.nanoTime();
+        double hashMapMs = 1.0 * (hashMapEnd - hashMapStart) / 1000000;
+        Contact newContact = Contact.newContact(contactName, contactPhone);
+        long arrayListStart = System.nanoTime();
+        phonebookArrayList.addContact(newContact);
+        long arrayListEnd = System.nanoTime();
+        double arrayListMs = 1.0 * (arrayListEnd - arrayListStart) / 1000000;
+        System.out.println("This insertion took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
+        Menu.chooseOption();
+    }
 
+    private static void updateContact() {
+        Menu.updateContact();
+        String existingContactName = keyboard.nextLine();
+        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+
+        if (existingContact != null && phonebookHashMap.findContact(existingContactName)) {
+            //TODO - add optional step - skip name / number
+            System.out.print("Enter a new name for " + existingContactName + ": ");
+            String newName = keyboard.nextLine();
+            System.out.print("Enter a new phone number for " + newName + ": ");
+            String newPhone = keyboard.nextLine();
+            Contact newContact = Contact.newContact(newName, newPhone);
+            long hashMapStart = System.nanoTime();
+            phonebookHashMap.updateContact(existingContactName, newName, newPhone);
+            long hashMapEnd = System.nanoTime();
+            double hashMapMs = 1.0 * (hashMapEnd - hashMapStart) / 1000000;
+            long arrayListStart = System.nanoTime();
+            phonebookArrayList.updateContact(existingContact, newContact);
+            long arrayListEnd = System.nanoTime();
+            double arrayListMs = 1.0 * (arrayListEnd - arrayListStart) / 1000000;
+            System.out.println("The update took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
+        } else {
+            System.out.println(existingContactName + " is not listed in the phonebook.");
+            Menu.chooseOption();
+        }
+        Menu.chooseOption();
+    }
+
+    private static void deleteContact() {
+        Menu.deleteContact();
+        String existingContactName = keyboard.nextLine();
+        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+        if (phonebookHashMap.findContact(existingContactName) && existingContact != null) {
+            phonebookHashMap.deleteContact(existingContactName);
+            long hashMapEnd = System.nanoTime();
+            long hashMapStart = System.nanoTime();
+            double hashMapMs = 1.0 * (hashMapEnd - hashMapStart) / 1000000;
+            long arrayListStart = System.nanoTime();
+            phonebookArrayList.deleteContact(existingContact);
+            long arrayListEnd = System.nanoTime();
+            double arrayListMs = 1.0 * (arrayListEnd - arrayListStart) / 1000000;
+            System.out.println("The deletion took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "for the arraylist.");
+        } else {
+            System.out.println(existingContactName + " is not listed in the phonebook.");
+        }
+        Menu.chooseOption();
+    }
+
+    private static void searchContacts() {
+        Menu.searchContacts();
+        String existingContactName = keyboard.nextLine();
+        long arrayListStart = System.nanoTime();
+        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+        long arrayListEnd = System.nanoTime();
+        double arrayListMs = 1.0 * (arrayListEnd - arrayListStart) / 1000000;
+        if (phonebookHashMap.findContact(existingContactName) && existingContact != null) {
+            String phoneNumber = phonebookHashMap.searchContact(existingContactName);
+            long hashMapEnd = System.nanoTime();
+            long hashMapStart = System.nanoTime();
+            double hashMapMs = 1.0 * (hashMapEnd - hashMapStart) / 1000000;
+            System.out.println(existingContactName + "'s phone number is " + phoneNumber + " in the hashmap.");
+            System.out.println(existingContactName + "'s phone number is " + existingContact.getPhoneNumber() + " in the arraylist.");
+            System.out.println("The search took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
+        } else {
+            System.out.println(existingContactName + " is not listed in the phonebook.");
+            Menu.chooseOption();
+        }
+        Menu.chooseOption();
     }
 }

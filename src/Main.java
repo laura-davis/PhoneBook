@@ -34,7 +34,6 @@ public class Main {
         Menu.displayMenu();
 
         while (!quit) {
-            //TODO - try / catch - exceptions handling if invalid data input
             selection = keyboard.nextInt();
             keyboard.nextLine();
             switch (selection) {
@@ -71,7 +70,6 @@ public class Main {
         String existingContactName = keyboard.nextLine();
 
         if (phonebookHashMap.findContact(existingContactName)) {
-            //TODO - add optional step - skip name / number
             System.out.print("Enter a new name for " + existingContactName + ": ");
             String newName = keyboard.nextLine();
             System.out.print("Enter a new phone number for " + newName + ": ");

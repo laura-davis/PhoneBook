@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Main {
 
     private static final Scanner keyboard = new Scanner(System.in);
-    private static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
+    private static final PhonebookLinkedList phonebookLinkedList = new PhonebookLinkedList();
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
@@ -25,7 +25,7 @@ public class Main {
             String name = (String) contact.get("name");
             String phone = (String) contact.get("phone");
             Contact newContact = Contact.newContact(name, phone);
-            phonebookArrayList.addContact(newContact);
+            phonebookLinkedList.addContact(newContact);
         }
         System.out.println("\nContacts from " + contactsFile.getName() + " have been added to the phonebook.\n");
 
@@ -42,7 +42,7 @@ public class Main {
                 case 1 -> Menu.displayMenu();
                 case 2 -> {
                     Menu.displayContacts();
-                    phonebookArrayList.displayContacts();
+                    phonebookLinkedList.displayContacts();
                     Menu.chooseOption();
                 }
                 case 3 -> addContact();
@@ -64,14 +64,14 @@ public class Main {
         System.out.print("Enter contact's phone number: ");
         String contactPhone = keyboard.nextLine();
         Contact newContact = Contact.newContact(contactName, contactPhone);
-        phonebookArrayList.addContact(newContact);
+        phonebookLinkedList.addContact(newContact);
         Menu.chooseOption();
     }
 
     private static void updateContact() {
         Menu.updateContact();
         String existingContactName = keyboard.nextLine();
-        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+        Contact existingContact = phonebookLinkedList.findContact(existingContactName);
         if (existingContact != null) {
             //TODO - add optional step - skip name / number
             System.out.print("Enter a new name for " + existingContactName + ": ");
@@ -79,7 +79,7 @@ public class Main {
             System.out.print("Enter a new phone number for " + newName + ": ");
             String newPhone = keyboard.nextLine();
             Contact newContact = Contact.newContact(newName, newPhone);
-            phonebookArrayList.updateContact(existingContact, newContact);
+            phonebookLinkedList.updateContact(existingContact, newContact);
         } else {
             System.out.println(existingContactName + " is not listed in the phonebook.");
         }
@@ -89,9 +89,9 @@ public class Main {
     private static void deleteContact() {
         Menu.deleteContact();
         String existingContactName = keyboard.nextLine();
-        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+        Contact existingContact = phonebookLinkedList.findContact(existingContactName);
         if (existingContact != null) {
-            phonebookArrayList.deleteContact(existingContact);
+            phonebookLinkedList.deleteContact(existingContact);
             System.out.println(existingContactName + " has been deleted from the phonebook.");
         } else {
             System.out.println(existingContactName + " is not listed in the phonebook.");
@@ -102,7 +102,7 @@ public class Main {
     private static void searchContacts() {
         Menu.searchContacts();
         String existingContactName = keyboard.nextLine();
-        Contact existingContact = phonebookArrayList.findContact(existingContactName);
+        Contact existingContact = phonebookLinkedList.findContact(existingContactName);
         if (existingContact != null) {
             System.out.println(existingContactName + "'s phone number is " + existingContact.getPhoneNumber() + " in the phonebook.");
         } else {

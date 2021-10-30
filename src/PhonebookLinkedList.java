@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-public class PhonebookArrayList {
+public class PhonebookLinkedList {
 
-    private final ArrayList<Contact> contact = new ArrayList<>();
+    private final LinkedList<Contact> contact = new LinkedList<>();
 
     public void displayContacts() {
         if (contact.size() == 0) {

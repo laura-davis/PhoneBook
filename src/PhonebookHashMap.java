@@ -6,10 +6,10 @@ public class PhonebookHashMap {
 
     public void displayContacts() {
         if (phonebookHashMap.isEmpty()) {
-            System.out.println("The hashmap is currently empty.");
+            System.out.println("The phonebook is currently empty.");
         } else {
             int count = 1;
-            System.out.println("The hashmap contains the following contact details: ");
+            System.out.println("The phonebook contains the following contact details: ");
             for (HashMap.Entry<String, String> entry : phonebookHashMap.entrySet()) {
                 System.out.println(count + ")\t\t" + "Name : " + entry.getKey() + "\t\t" +
                         "Phone number: " + entry.getValue());
@@ -20,10 +20,10 @@ public class PhonebookHashMap {
 
     public void addContact(String contactName, String contactPhone) {
         if (phonebookHashMap.containsKey(contactName)) {
-            System.out.println(contactName + "'s details are already in the hashmap.");
+            System.out.println(contactName + "'s details are already in the phonebook.");
         } else {
             phonebookHashMap.put(contactName, contactPhone);
-            System.out.println(contactName + "'s details have been added to the hashmap.");
+            System.out.println(contactName + "'s details have been added to the phonebook.");
         }
     }
 
@@ -31,15 +31,15 @@ public class PhonebookHashMap {
         if (phonebookHashMap.containsKey(oldContact)) {
             phonebookHashMap.remove(oldContact);
             phonebookHashMap.put(newName, newPhone);
-            System.out.println(newName + "'s details were updated in the hashmap.");
+            System.out.println(newName + "'s details were updated in the phonebook.");
         } else {
-            System.out.println(oldContact + " is not listed in the hashmap.");
+            System.out.println(oldContact + " is not listed in the phonebook.");
         }
     }
 
     public void deleteContact(String existingContactName) {
         phonebookHashMap.remove(existingContactName);
-        System.out.println(existingContactName + "'s details were deleted from the hashmap.");
+        System.out.println(existingContactName + "'s details were deleted from the phonebook.");
     }
 
     public String searchContact(String searchContact) {

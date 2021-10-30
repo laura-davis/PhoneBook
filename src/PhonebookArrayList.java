@@ -6,9 +6,9 @@ public class PhonebookArrayList {
 
     public void displayContacts() {
         if (contact.size() == 0) {
-            System.out.println("The arraylist is currently empty.");
+            System.out.println("The phonebook is currently empty.");
         } else {
-            System.out.println("The arraylist contains the following contact details: ");
+            System.out.println("The phonebook contains the following contact details: ");
             for (int i = 0; i < contact.size(); i++) {
                 System.out.println("" + (i + 1) + ")\t\t" + "Name : " + contact.get(i).getName() + "\t\t" +
                         "Phone number: " + contact.get(i).getPhoneNumber());
@@ -18,22 +18,22 @@ public class PhonebookArrayList {
 
     public void addContact(Contact newContact) {
         if (searchContact(newContact.getName()) >= 0) {
-            System.out.println(newContact.getName() + "'s details are already in the arraylist.");
+            System.out.println(newContact.getName() + "'s details are already in the phonebook.");
             return;
         }
         contact.add(newContact);
-        System.out.println(newContact.getName() + "'s details have been added to the arraylist.");
+        System.out.println(newContact.getName() + "'s details have been added to the phonebook.");
     }
 
     public void updateContact(Contact oldContact, Contact newContact) {
         int contactPosition = searchContact(oldContact);
 
         if (contactPosition < 0) {
-            System.out.println(oldContact.getName() + " is not in the arraylist.");
+            System.out.println(oldContact.getName() + " is not in the phonebook.");
             return;
         }
         contact.set(contactPosition, newContact);
-        System.out.println(newContact.getName() + "'s details were updated in the arraylist.");
+        System.out.println(newContact.getName() + "'s details were updated in the phonebook.");
     }
 
     public void deleteContact(Contact contact) {

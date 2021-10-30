@@ -18,7 +18,7 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
         JSONParser parser = new JSONParser();
-        File contactsFile = new File("./resources/10000.json"); // Change file name to add 100, 1,000 or 10,000 contacts to each phonebook.
+        File contactsFile = new File("./resources/100.json"); // Change file name to add 100, 1,000 or 10,000 contacts to each phonebook.
 
         JSONArray json = (JSONArray) parser.parse(new FileReader(contactsFile));
         long hashMapStart = System.nanoTime();

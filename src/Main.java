@@ -52,7 +52,6 @@ public class Main {
         Menu.displayMenu();
 
         while (!quit) {
-            //TODO - try / catch - exceptions handling if invalid data input
             selection = keyboard.nextInt();
             keyboard.nextLine();
             switch (selection) {
@@ -69,7 +68,6 @@ public class Main {
                     long arrayListEnd2 = System.nanoTime();
                     double arrayListMs2 = 1.0 * (arrayListEnd2 - arrayListStart2) / 1000000;
                     System.out.println("Retrieving contacts from " + contactsFile.getName() + " took " + hashMapMs2 + "ms for the hashmap and " + arrayListMs2 + "ms for the arraylist.");
-
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -79,11 +77,8 @@ public class Main {
                 }
                 case 3 -> addContact();
                 case 4 -> updateContact();
-
                 case 5 -> deleteContact();
-
                 case 6 -> searchContacts();
-
                 case 7 -> {
                     quit = true;
                     Menu.quit();
@@ -117,7 +112,6 @@ public class Main {
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
 
         if (existingContact != null && phonebookHashMap.findContact(existingContactName)) {
-            //TODO - add optional step - skip name / number
             System.out.print("Enter a new name for " + existingContactName + ": ");
             String newName = keyboard.nextLine();
             System.out.print("Enter a new phone number for " + newName + ": ");
@@ -134,7 +128,6 @@ public class Main {
             System.out.println("The update took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
         } else {
             System.out.println(existingContactName + " is not listed in the phonebook.");
-            Menu.chooseOption();
         }
         Menu.chooseOption();
     }
@@ -176,7 +169,6 @@ public class Main {
             System.out.println("The search took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
         } else {
             System.out.println(existingContactName + " is not listed in the phonebook.");
-            Menu.chooseOption();
         }
         Menu.chooseOption();
     }

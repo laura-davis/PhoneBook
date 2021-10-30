@@ -1,12 +1,9 @@
-public class Contact {
+//import com.fasterxml.jackson.annotation.JsonProperty;
 
-    private final String name;
-    private final String phoneNumber;
+public record Contact(String name, String phoneNumber) {
 
-    public Contact(String name, String phoneNumber) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-    }
+    //    @JsonCreator
+    //    public Contact(@JsonProperty("name") String name, @JsonProperty("number") String phoneNumber) {
 
     public String getName() {
         return this.name;

@@ -1,3 +1,12 @@
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+
+import org.json.simple.parser.ParseException;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +15,36 @@ public class Main {
     private static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
     private static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException, InterruptedException {
+
+        JSONParser parser = new JSONParser();
+        File contactsFile = new File("./resources/10000.json"); // Change file name to add 100, 1,000 or 10,000 contacts to each phonebook.
+
+        JSONArray json = (JSONArray) parser.parse(new FileReader(contactsFile));
+        long hashMapStart = System.nanoTime();
+        for (Object o : json) {
+            JSONObject contact = (JSONObject) o;
+            String name = (String) contact.get("name");
+            String phone = (String) contact.get("phone");
+            phonebookHashMap.addContact(name, phone);
+        }
+        long hashMapEnd = System.nanoTime();
+        double hashMapMs = 1.0 * (hashMapEnd - hashMapStart) / 1000000;
+
+        Thread.sleep(1000);
+
+        long arrayListStart = System.nanoTime();
+        for (Object o : json) {
+            JSONObject contact = (JSONObject) o;
+            String name = (String) contact.get("name");
+            String phone = (String) contact.get("phone");
+            Contact newContact = Contact.newContact(name, phone);
+            phonebookArrayList.addContact(newContact);
+        }
+        long arrayListEnd = System.nanoTime();
+        double arrayListMs = 1.0 * (arrayListEnd - arrayListStart) / 1000000;
+
+        System.out.println("Adding " + contactsFile.getName() + " took " + hashMapMs + "ms for the hashmap and " + arrayListMs + "ms for the arraylist.");
 
         boolean quit = false;
         int selection;
@@ -21,8 +59,17 @@ public class Main {
                 case 1 -> Menu.displayMenu();
                 case 2 -> {
                     Menu.displayContacts();
+                    long hashMapStart2 = System.nanoTime();
                     phonebookHashMap.displayContacts();
+                    long hashMapEnd2 = System.nanoTime();
+                    double hashMapMs2 = 1.0 * (hashMapEnd2 - hashMapStart2) / 1000000;
+                    Thread.sleep(1000);
+                    long arrayListStart2 = System.nanoTime();
                     phonebookArrayList.displayContacts();
+                    long arrayListEnd2 = System.nanoTime();
+                    double arrayListMs2 = 1.0 * (arrayListEnd2 - arrayListStart2) / 1000000;
+                    System.out.println("Retrieving contacts from " + contactsFile.getName() + " took " + hashMapMs2 + "ms for the hashmap and " + arrayListMs2 + "ms for the arraylist.");
+
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {

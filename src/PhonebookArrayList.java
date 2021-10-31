@@ -18,11 +18,11 @@ public class PhonebookArrayList {
 
     public void addContact(Contact newContact) {
         if (searchContact(newContact.getName()) >= 0) {
-//            System.out.println(newContact.getName() + "'s details are already in the arraylist.");
+            System.out.println(newContact.getName() + "'s details are already in the arraylist.");
             return;
         }
         contactArrayList.add(newContact);
-//        System.out.println(newContact.getName() + "'s details have been added to the arraylist.");
+        System.out.println(newContact.getName() + "'s details have been added to the arraylist.");
     }
 
     public void updateContact(Contact oldContact, Contact newContact) {

@@ -20,10 +20,10 @@ public class PhonebookHashMap {
 
     public void addContact(String contactName, String contactPhone) {
         if (phonebookHashMap.containsKey(contactName)) {
-//            System.out.println(contactName + "'s details are already in the hashmap.");
+            System.out.println(contactName + "'s details are already in the hashmap.");
         } else {
             phonebookHashMap.put(contactName, contactPhone);
-//            System.out.println(contactName + "'s details have been added to the hashmap.");
+            System.out.println(contactName + "'s details have been added to the hashmap.");
         }
     }
 

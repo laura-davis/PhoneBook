@@ -18,11 +18,11 @@ public class PhonebookLinkedList {
 
     public void addContact(Contact newContact) {
         if (searchContact(newContact.getName()) >= 0) {
-//            System.out.println(newContact.getName() + "'s details are already in the linkedlist.");
+            System.out.println(newContact.getName() + "'s details are already in the linkedlist.");
             return;
         }
         contactLinkedList.add(newContact);
-//        System.out.println(newContact.getName() + "'s details have been added to the linkedlist.");
+        System.out.println(newContact.getName() + "'s details have been added to the linkedlist.");
     }
 
     public void updateContact(Contact oldContact, Contact newContact) {

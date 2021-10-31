@@ -21,10 +21,10 @@ public class PhonebookTreeMap {
 
     public void addContact(String contactName, String contactPhone) {
         if (phonebookTreeMap.containsKey(contactName)) {
-//            System.out.println(contactName + "'s details are already in the treemap.");
+            System.out.println(contactName + "'s details are already in the treemap.");
         } else {
             phonebookTreeMap.put(contactName, contactPhone);
-//            System.out.println(contactName + "'s details have been added to the treemap.");
+            System.out.println(contactName + "'s details have been added to the treemap.");
         }
     }
 

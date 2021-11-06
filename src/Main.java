@@ -9,12 +9,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 
-    private static final Scanner keyboard = new Scanner(System.in);
-    private static final PhonebookLinkedList phonebookLinkedList = new PhonebookLinkedList();
+    static final Scanner keyboard = new Scanner(System.in);
+    static final PhonebookLinkedList phonebookLinkedList = new PhonebookLinkedList();
 
-    public static void main(String[] args) throws IOException, ParseException, InterruptedException {
+    static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
         JSONParser parser = new JSONParser();
         File contactsFile = new File("./resources/100.json"); // Change file name to add 100, 1,000 or 10,000 contacts to each phonebook.

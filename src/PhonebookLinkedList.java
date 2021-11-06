@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 
-public class PhonebookLinkedList {
+class PhonebookLinkedList {
 
-    private final LinkedList<Contact> contact = new LinkedList<>();
+    final LinkedList<Contact> contact = new LinkedList<>();
 
     void displayContacts() {
         if (contact.size() == 0) {

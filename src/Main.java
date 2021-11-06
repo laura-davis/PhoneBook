@@ -9,13 +9,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 
-    private static final Scanner keyboard = new Scanner(System.in);
-    private static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
-    private static final PhonebookTreeMap phonebookTreeMap = new PhonebookTreeMap();
-    private static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
-    private static final PhonebookLinkedList phonebookLinkedList = new PhonebookLinkedList();
+    static final Scanner keyboard = new Scanner(System.in);
+    static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
+    static final PhonebookTreeMap phonebookTreeMap = new PhonebookTreeMap();
+    static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
+    static final PhonebookLinkedList phonebookLinkedList = new PhonebookLinkedList();
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
@@ -127,7 +127,7 @@ public class Main {
         }
     }
 
-    public static void addContact() {
+    static void addContact() {
         Menu.addContact();
         String contactName = keyboard.nextLine();
         System.out.print("Enter contact's phone number: ");
@@ -154,7 +154,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void updateContact() {
+    static void updateContact() {
         Menu.updateContact();
         String existingContactName = keyboard.nextLine();
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
@@ -190,7 +190,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void deleteContact() {
+    static void deleteContact() {
         Menu.deleteContact();
         String existingContactName = keyboard.nextLine();
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
@@ -220,7 +220,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void searchContacts() {
+    static void searchContacts() {
         Menu.searchContacts();
         String existingContactName = keyboard.nextLine();
         long arrayListStart = System.nanoTime();

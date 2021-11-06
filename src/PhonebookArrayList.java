@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class PhonebookArrayList {
+class PhonebookArrayList {
 
-    private final ArrayList<Contact> contactArrayList = new ArrayList<>();
+    final ArrayList<Contact> contactArrayList = new ArrayList<>();
 
-    public void displayContacts() {
+    void displayContacts() {
         if (contactArrayList.size() == 0) {
             System.out.println("The arraylist is currently empty.");
         } else {
@@ -16,7 +16,7 @@ public class PhonebookArrayList {
         }
     }
 
-    public void addContact(Contact newContact) {
+    void addContact(Contact newContact) {
         if (searchContact(newContact.getName()) >= 0) {
             System.out.println(newContact.getName() + "'s details are already in the arraylist.");
             return;
@@ -25,7 +25,7 @@ public class PhonebookArrayList {
         System.out.println(newContact.getName() + "'s details have been added to the arraylist.");
     }
 
-    public void updateContact(Contact oldContact, Contact newContact) {
+    void updateContact(Contact oldContact, Contact newContact) {
         int contactPosition = searchContact(oldContact);
 
         if (contactPosition < 0) {
@@ -36,18 +36,18 @@ public class PhonebookArrayList {
         System.out.println(newContact.getName() + "'s details were updated in the arraylist.");
     }
 
-    public void deleteContact(Contact contact) {
+    void deleteContact(Contact contact) {
         int position = searchContact(contact);
         if (position >= 0) {
             this.contactArrayList.remove(position);
         }
     }
 
-    public int searchContact(Contact contact) {
+    int searchContact(Contact contact) {
         return this.contactArrayList.indexOf(contact);
     }
 
-    public int searchContact(String searchContact) {
+    int searchContact(String searchContact) {
         for (int i = 0; i < contactArrayList.size(); i++) {
             Contact contact = this.contactArrayList.get(i);
 
@@ -58,7 +58,7 @@ public class PhonebookArrayList {
         return -1;
     }
 
-    public Contact findContact(String name) {
+    Contact findContact(String name) {
         int position = searchContact(name);
         if (position >= 0) {
             return this.contactArrayList.get(position);

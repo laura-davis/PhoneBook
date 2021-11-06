@@ -9,10 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 
-    private static final Scanner keyboard = new Scanner(System.in);
-    private static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
+    static final Scanner keyboard = new Scanner(System.in);
+    static final PhonebookHashMap phonebookHashMap = new PhonebookHashMap();
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-     static void addContact() {
+    static void addContact() {
         Menu.addContact();
         String contactName = keyboard.nextLine();
         System.out.print("Enter contact's phone number: ");
@@ -65,7 +65,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-     static void updateContact() {
+    static void updateContact() {
         Menu.updateContact();
         String existingContactName = keyboard.nextLine();
 
@@ -81,7 +81,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-     static void deleteContact() {
+    static void deleteContact() {
         Menu.deleteContact();
         String existingContactName = keyboard.nextLine();
         if (phonebookHashMap.findContact(existingContactName)) {
@@ -92,11 +92,10 @@ public class Main {
         Menu.chooseOption();
     }
 
-     static void searchContacts() {
+    static void searchContacts() {
         Menu.searchContacts();
         String existingContactName = keyboard.nextLine();
-        if (phonebookHashMap.findContact(existingContactName))
-        {
+        if (phonebookHashMap.findContact(existingContactName)) {
             String phoneNumber = phonebookHashMap.searchContact(existingContactName);
             System.out.println(existingContactName + "'s phone number is " + phoneNumber + " in the phonebook.");
         } else {

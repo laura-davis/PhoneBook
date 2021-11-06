@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
-public class PhonebookHashMap {
+ class PhonebookHashMap {
 
-    private final HashMap<String, String> phonebookHashMap = new HashMap<>();
+     final HashMap<String, String> phonebookHashMap = new HashMap<>();
 
      void displayContacts() {
         if (phonebookHashMap.isEmpty()) {

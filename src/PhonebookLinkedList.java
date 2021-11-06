@@ -4,7 +4,7 @@ public class PhonebookLinkedList {
 
     private final LinkedList<Contact> contact = new LinkedList<>();
 
-    public void displayContacts() {
+    void displayContacts() {
         if (contact.size() == 0) {
             System.out.println("The phonebook is currently empty.");
         } else {
@@ -16,7 +16,7 @@ public class PhonebookLinkedList {
         }
     }
 
-    public void addContact(Contact newContact) {
+    void addContact(Contact newContact) {
         if (searchContact(newContact.getName()) >= 0) {
             System.out.println(newContact.getName() + "'s details are already in the phonebook.");
             return;
@@ -25,7 +25,7 @@ public class PhonebookLinkedList {
         System.out.println(newContact.getName() + "'s details have been added to the phonebook.");
     }
 
-    public void updateContact(Contact oldContact, Contact newContact) {
+    void updateContact(Contact oldContact, Contact newContact) {
         int contactPosition = searchContact(oldContact);
 
         if (contactPosition < 0) {
@@ -36,18 +36,18 @@ public class PhonebookLinkedList {
         System.out.println(newContact.getName() + "'s details were updated in the phonebook.");
     }
 
-    public void deleteContact(Contact contact) {
+    void deleteContact(Contact contact) {
         int position = searchContact(contact);
         if (position >= 0) {
             this.contact.remove(position);
         }
     }
 
-    public int searchContact(Contact contact) {
+    int searchContact(Contact contact) {
         return this.contact.indexOf(contact);
     }
 
-    public int searchContact(String searchContact) {
+    int searchContact(String searchContact) {
         for (int i = 0; i < contact.size(); i++) {
             Contact contact = this.contact.get(i);
 
@@ -58,7 +58,7 @@ public class PhonebookLinkedList {
         return -1;
     }
 
-    public Contact findContact(String name) {
+    Contact findContact(String name) {
         int position = searchContact(name);
         if (position >= 0) {
             return this.contact.get(position);

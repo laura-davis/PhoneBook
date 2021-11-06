@@ -4,7 +4,7 @@ public class PhonebookHashMap {
 
     private final HashMap<String, String> phonebookHashMap = new HashMap<>();
 
-    public void displayContacts() {
+     void displayContacts() {
         if (phonebookHashMap.isEmpty()) {
             System.out.println("The phonebook is currently empty.");
         } else {
@@ -18,7 +18,7 @@ public class PhonebookHashMap {
         }
     }
 
-    public void addContact(String contactName, String contactPhone) {
+    void addContact(String contactName, String contactPhone) {
         if (phonebookHashMap.containsKey(contactName)) {
             System.out.println(contactName + "'s details are already in the phonebook.");
         } else {
@@ -27,7 +27,7 @@ public class PhonebookHashMap {
         }
     }
 
-    public void updateContact(String oldContact, String newName, String newPhone) {
+    void updateContact(String oldContact, String newName, String newPhone) {
         if (phonebookHashMap.containsKey(oldContact)) {
             phonebookHashMap.remove(oldContact);
             phonebookHashMap.put(newName, newPhone);
@@ -37,16 +37,16 @@ public class PhonebookHashMap {
         }
     }
 
-    public void deleteContact(String existingContactName) {
+    void deleteContact(String existingContactName) {
         phonebookHashMap.remove(existingContactName);
         System.out.println(existingContactName + "'s details were deleted from the phonebook.");
     }
 
-    public String searchContact(String searchContact) {
+    String searchContact(String searchContact) {
         return phonebookHashMap.get(searchContact);
     }
 
-    public boolean findContact(String name) {
+    boolean findContact(String name) {
         return phonebookHashMap.containsKey(name);
     }
 }

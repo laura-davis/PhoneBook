@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void addContact() {
+    private static void addContact() {
         Menu.addContact();
         String contactName = keyboard.nextLine();
         System.out.print("Enter contact's phone number: ");

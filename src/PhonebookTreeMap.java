@@ -1,9 +1,9 @@
 import java.util.HashMap;
 import java.util.TreeMap;
 
-public class PhonebookTreeMap {
+class PhonebookTreeMap {
 
-    private final TreeMap<String, String> phonebookTreeMap = new TreeMap<>();
+    final TreeMap<String, String> phonebookTreeMap = new TreeMap<>();
 
     void displayContacts() {
         if (phonebookTreeMap.isEmpty()) {

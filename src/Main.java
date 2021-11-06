@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    public static void addContact() {
+    static void addContact() {
         Menu.addContact();
         String contactName = keyboard.nextLine();
         System.out.print("Enter contact's phone number: ");
@@ -65,7 +65,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void updateContact() {
+    static void updateContact() {
         Menu.updateContact();
         String existingContactName = keyboard.nextLine();
 
@@ -81,7 +81,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void deleteContact() {
+    static void deleteContact() {
         Menu.deleteContact();
         String existingContactName = keyboard.nextLine();
         if (phonebookTreeMap.findContact(existingContactName)) {
@@ -92,11 +92,10 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void searchContacts() {
+    static void searchContacts() {
         Menu.searchContacts();
         String existingContactName = keyboard.nextLine();
-        if (phonebookTreeMap.findContact(existingContactName))
-        {
+        if (phonebookTreeMap.findContact(existingContactName)) {
             String phoneNumber = phonebookTreeMap.searchContact(existingContactName);
             System.out.println(existingContactName + "'s phone number is " + phoneNumber + " in the phonebook.");
         } else {

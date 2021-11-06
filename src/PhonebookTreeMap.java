@@ -5,7 +5,7 @@ public class PhonebookTreeMap {
 
     private final TreeMap<String, String> phonebookTreeMap = new TreeMap<>();
 
-    public void displayContacts() {
+    void displayContacts() {
         if (phonebookTreeMap.isEmpty()) {
             System.out.println("The phonebook is currently empty.");
         } else {
@@ -19,7 +19,7 @@ public class PhonebookTreeMap {
         }
     }
 
-    public void addContact(String contactName, String contactPhone) {
+    void addContact(String contactName, String contactPhone) {
         if (phonebookTreeMap.containsKey(contactName)) {
             System.out.println(contactName + "'s details are already in the phonebook.");
         } else {
@@ -28,7 +28,7 @@ public class PhonebookTreeMap {
         }
     }
 
-    public void updateContact(String oldContact, String newName, String newPhone) {
+    void updateContact(String oldContact, String newName, String newPhone) {
         if (phonebookTreeMap.containsKey(oldContact)) {
             phonebookTreeMap.remove(oldContact);
             phonebookTreeMap.put(newName, newPhone);
@@ -38,16 +38,16 @@ public class PhonebookTreeMap {
         }
     }
 
-    public void deleteContact(String existingContactName) {
+    void deleteContact(String existingContactName) {
         phonebookTreeMap.remove(existingContactName);
         System.out.println(existingContactName + "'s details were deleted from the phonebook.");
     }
 
-    public String searchContact(String searchContact) {
+    String searchContact(String searchContact) {
         return phonebookTreeMap.get(searchContact);
     }
 
-    public boolean findContact(String name) {
+    boolean findContact(String name) {
         return phonebookTreeMap.containsKey(name);
     }
 }

@@ -9,10 +9,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 
-    private static final Scanner keyboard = new Scanner(System.in);
-    private static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
+    static final Scanner keyboard = new Scanner(System.in);
+    static final PhonebookArrayList phonebookArrayList = new PhonebookArrayList();
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 

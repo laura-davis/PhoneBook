@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class PhonebookArrayList {
+class PhonebookArrayList {
 
-    private final ArrayList<Contact> contact = new ArrayList<>();
+    final ArrayList<Contact> contact = new ArrayList<>();
 
     void displayContacts() {
         if (contact.size() == 0) {

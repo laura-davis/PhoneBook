@@ -57,7 +57,7 @@ public class Main {
         }
     }
 
-    public static void addContact() {
+    static void addContact() {
         Menu.addContact();
         String contactName = keyboard.nextLine();
         System.out.print("Enter contact's phone number: ");
@@ -67,7 +67,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void updateContact() {
+    static void updateContact() {
         Menu.updateContact();
         String existingContactName = keyboard.nextLine();
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
@@ -84,7 +84,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void deleteContact() {
+    static void deleteContact() {
         Menu.deleteContact();
         String existingContactName = keyboard.nextLine();
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
@@ -97,7 +97,7 @@ public class Main {
         Menu.chooseOption();
     }
 
-    private static void searchContacts() {
+    static void searchContacts() {
         Menu.searchContacts();
         String existingContactName = keyboard.nextLine();
         Contact existingContact = phonebookArrayList.findContact(existingContactName);
